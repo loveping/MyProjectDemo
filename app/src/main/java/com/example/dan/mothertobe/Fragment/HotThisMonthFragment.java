@@ -23,8 +23,8 @@ public class HotThisMonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_page_main,container,false);
-        TextView textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText("第00页");
+//        TextView textView = (TextView) view.findViewById(R.id.textView);
+//        textView.setText("第00页");
         return view;
     }
 }
