@@ -1,6 +1,7 @@
 package com.example.dan.mothertobe.Fragment.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class MatherManualAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int i) {
-        return getItem(i);
+        return i;
     }
 
     @Override
@@ -46,6 +47,8 @@ public class MatherManualAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
+
+        Log.i("*********************",list.get(0).getDescription());
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -56,7 +59,8 @@ public class MatherManualAdapter extends BaseAdapter{
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        System.out.println("**********************" +list.get(0).getTitle());
+        Log.i("*********************",list.get(0).getDescription());
+
         holder.tv_01.setText(list.get(i).getTitle());
         holder.tv_02.setText(list.get(i).getDescription());
         return convertView;

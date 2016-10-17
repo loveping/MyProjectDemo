@@ -13,4 +13,7 @@
     <color name="text_green">#4f8b01</color>
     <color name="bg_nav">#f9f9f9</color>
     <color name="black">#FF2E2E2C</color>
+    <color name="transparent">#00000000</color>
+    <color name="friendsdataitem">#eceaea</color>
+    <color name="lightgray">#BABABA</color>
 </resources>

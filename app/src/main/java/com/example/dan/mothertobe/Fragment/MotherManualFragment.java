@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.dan.mothertobe.Common.WebService;
@@ -47,9 +48,9 @@ public class MotherManualFragment extends Fragment {
 
     private ListView lv_MotherManual;
     private MatherManualAdapter adapter;
-    List<TnGou> modelList = new ArrayList<TnGou>();
+    private List<TnGou> modelList = new ArrayList<TnGou>();
     private Context context;
-
+    private ProgressBar progressBar;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class MotherManualFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_page_main,container,false);
         context = view.getContext();
         lv_MotherManual = (ListView) view.findViewById(R.id.lv_MotherManual) ;
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         getdata();
         return view;
     }
@@ -67,7 +70,7 @@ public class MotherManualFragment extends Fragment {
                 .build()
                 .execute()
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
@@ -82,18 +85,16 @@ public class MotherManualFragment extends Fragment {
                     @Override
                     public void onNext(String s) {
 
-                       // Log.i("*********************",s);
                         try {
                             JSONObject jo = new JSONObject(s);
                             JSONArray jsonArray = jo.getJSONArray("tngou");
                             Gson gson = new Gson();
                             modelList = gson.fromJson(jsonArray.toString(),new TypeToken<List<TnGou>>() {}.getType());
-
-                            Log.i("*********************",modelList.get(0).getDescription());
+                            progressBar.setVisibility(View.GONE);
                             adapter = new MatherManualAdapter(context,modelList);
                             lv_MotherManual.setAdapter(adapter);
                             Log.i("*********************",modelList.get(1).getTitle());
-                            adapter.notifyDataSetChanged();
+
                         }catch (JsonSyntaxException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
