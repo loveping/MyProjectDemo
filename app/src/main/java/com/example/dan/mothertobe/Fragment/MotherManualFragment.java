@@ -93,7 +93,6 @@ public class MotherManualFragment extends Fragment {
                             progressBar.setVisibility(View.GONE);
                             adapter = new MatherManualAdapter(context,modelList);
                             lv_MotherManual.setAdapter(adapter);
-                            Log.i("*********************",modelList.get(1).getTitle());
 
                         }catch (JsonSyntaxException e) {
                             e.printStackTrace();
