@@ -128,12 +128,8 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
                             JSONObject jo = new JSONObject(s);
                             JSONArray jsonArray = jo.getJSONArray("tngou");
                             Gson gson = new Gson();
-                            List<TnGou> modelList1 = new ArrayList<TnGou>();
-                            modelList1 = gson.fromJson(jsonArray.toString(),new TypeToken<List<TnGou>>() {}.getType());
 
-                            for (int i = 0; i < modelList1.size(); i++) {
-                                modelList.add(modelList1.get(i));
-                            }
+                            modelList.addAll(gson.fromJson(jsonArray.toString(),new TypeToken<List<TnGou>>() {}.getType()));
 
                             mAdapter.notifyDataSetChanged();
 
