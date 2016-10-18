@@ -28,10 +28,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ViewPager viewPager;//定义viewPager
+    private ViewPager viewPager;
 
-    private TabLayout tab_tabLayoutFragment_title;//定义TabLayout
-    private FragmentPagerAdapter fragmentAdapter;//定义adapter
+    private TabLayout tab_tabLayoutFragment_title;
+    private FragmentPagerAdapter fragmentAdapter;
 
     private List<Fragment> list_fragment; //定义要装fragment的列表
     private List<String> list_title; //tab名称列表
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity
         homePageFragment = new MotherManualFragment();
         hotRecommendedFragment = new HotRecommendedFragment();
         hotThisMonthFragment = new HotThisMonthFragment();
-
         //将fragment装进列表中
         list_fragment = new ArrayList<>();
         list_fragment.add(homePageFragment);
@@ -101,6 +100,7 @@ public class MainActivity extends AppCompatActivity
 
         //viewpager加载adapter
         viewPager.setAdapter(fragmentAdapter);
+        viewPager.setOffscreenPageLimit(3);
         //tab_FindFragment_title.setViewPager(viewPager);
         //TabLayout加载viewpager
         tab_tabLayoutFragment_title.setupWithViewPager(viewPager);
