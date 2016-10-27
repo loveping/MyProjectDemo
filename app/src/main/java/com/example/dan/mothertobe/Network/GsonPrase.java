@@ -1,4 +1,4 @@
-package com.example.dan.mothertobe.Network;
+package com.example.dan.mothertobe.network;
 
 import com.google.gson.Gson;
 

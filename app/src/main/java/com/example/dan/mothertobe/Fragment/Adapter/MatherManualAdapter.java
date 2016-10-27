@@ -1,4 +1,4 @@
-package com.example.dan.mothertobe.Fragment.Adapter;
+package com.example.dan.mothertobe.fragment.Adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.dan.mothertobe.Fragment.Modle.MatherManualModle;
-import com.example.dan.mothertobe.Fragment.Modle.TnGou;
+import com.example.dan.mothertobe.fragment.Modle.TnGou;
 import com.example.dan.mothertobe.R;
 
 import java.util.ArrayList;

@@ -1,33 +1,27 @@
-package com.example.dan.mothertobe.Fragment;
+package com.example.dan.mothertobe.fragment;
 
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dan.mothertobe.Common.WebService;
-import com.example.dan.mothertobe.Fragment.Adapter.ItemsAdapter;
-import com.example.dan.mothertobe.Fragment.Adapter.MatherManualAdapter;
-import com.example.dan.mothertobe.Fragment.Modle.MatherManualModle;
-import com.example.dan.mothertobe.Fragment.Modle.TnGou;
-import com.example.dan.mothertobe.Network.OkHttp3Request;
+import com.example.dan.mothertobe.fragment.Adapter.ItemsAdapter;
+import com.example.dan.mothertobe.fragment.Adapter.MatherManualAdapter;
+import com.example.dan.mothertobe.fragment.Modle.TnGou;
+import com.example.dan.mothertobe.network.OkHttp3Request;
 import com.example.dan.mothertobe.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -55,7 +49,7 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
 
     private ListView lv_MotherManual;
     private MatherManualAdapter adapter;
-    private List<TnGou> modelList = new ArrayList<TnGou>();
+    private List<TnGou> modelList;
     private Context context;
     private ProgressBar progressBar;
 
@@ -95,6 +89,7 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
             }
         });
 
+        modelList = new ArrayList<>();
         mAdapter = new ItemsAdapter(context,modelList);
 
         mRecyclerView.setAdapter( mAdapter);
@@ -113,7 +108,7 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
-
+                        mAdapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -125,13 +120,13 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
                     public void onNext(String s) {
 
                         try {
+
                             JSONObject jo = new JSONObject(s);
                             JSONArray jsonArray = jo.getJSONArray("tngou");
                             Gson gson = new Gson();
-
-                            modelList.addAll(gson.fromJson(jsonArray.toString(),new TypeToken<List<TnGou>>() {}.getType()));
-
-                            mAdapter.notifyDataSetChanged();
+                            List<TnGou> molist = new ArrayList<TnGou>();
+                            molist = gson.fromJson(jsonArray.toString(),new TypeToken<List<TnGou>>() {}.getType());
+                            modelList.addAll(molist);
 
                             mSwipeRefreshLayout.post(new Runnable() {
                                 @Override
@@ -143,9 +138,13 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
                                     }else {
 
                                         mSwipeRefreshLayout.setRefreshing(false);
+
+
                                     }
                                 }
                             });
+
+                            mAdapter.notifyDataSetChanged();
 
                             //设置增加或删除条目的动画
                             mRecyclerView.setItemAnimator(new DefaultItemAnimator());

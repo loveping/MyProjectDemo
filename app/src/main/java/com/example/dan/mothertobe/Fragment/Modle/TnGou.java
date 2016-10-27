@@ -1,4 +1,4 @@
-package com.example.dan.mothertobe.Fragment.Modle;
+package com.example.dan.mothertobe.fragment.Modle;
 
 /**
  * Created by dandan on 2016/10/17.

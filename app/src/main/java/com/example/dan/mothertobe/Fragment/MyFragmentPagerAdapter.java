@@ -1,11 +1,8 @@
-package com.example.dan.mothertobe.Fragment;
+package com.example.dan.mothertobe.fragment;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import com.example.dan.mothertobe.MainActivity;
 
 import java.util.List;
 

@@ -9,15 +9,18 @@ package com.example.dan.mothertobe.Common;
 public class WebService {
 
 
-    public final static String HOST = "";
+    public final static String HOST = "http://www.fastersoft.com.cn:83";
 
-    //新闻网页接口
-
-    public final static String URL = "http://192.168.1.231:8080/grainmonitor/app/getNewsDetail.shtml?id=";
+    //新闻列表
+    public final static String QUERYNEWSLIST = "/grainmonitor/app/queryNewsList.shtml";
 
     //登录接口
     public final static String LOGIN = HOST+"/grainmonitor/app/login.shtml";
 
+    public final static String MAIN = "http://www.tngou.net";
     //健康知识分类接口-健康知识API测试接口
     public final static String HEALTHKNOWLEDGE = "http://www.tngou.net/api/lore/classify";
+
+    //http://www.tngou.net/api/lore/list?id=2
+    public final static String LIST = "/api/lore/list";
 }

@@ -1,5 +1,6 @@
 package com.example.dan.mothertobe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,10 +18,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.dan.mothertobe.Fragment.MotherManualFragment;
-import com.example.dan.mothertobe.Fragment.HotRecommendedFragment;
-import com.example.dan.mothertobe.Fragment.HotThisMonthFragment;
-import com.example.dan.mothertobe.Fragment.MyFragmentPagerAdapter;
+import com.example.dan.mothertobe.activity.LinkmanActivity;
+import com.example.dan.mothertobe.fragment.MotherManualFragment;
+import com.example.dan.mothertobe.fragment.HotRecommendedFragment;
+import com.example.dan.mothertobe.fragment.HotThisMonthFragment;
+import com.example.dan.mothertobe.fragment.MyFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,6 +149,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent intent =new Intent();
+            intent.setClass(MainActivity.this, LinkmanActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

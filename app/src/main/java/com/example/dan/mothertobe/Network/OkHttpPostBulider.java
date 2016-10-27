@@ -1,4 +1,4 @@
-package com.example.dan.mothertobe.Network;
+package com.example.dan.mothertobe.network;
 
 import java.io.File;
 import java.util.ArrayList;
