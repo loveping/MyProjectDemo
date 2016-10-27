@@ -157,6 +157,8 @@ public class MotherManualFragment extends Fragment implements SwipeRefreshLayout
                         }
 
                     }
+
+
                 });
     }
 
