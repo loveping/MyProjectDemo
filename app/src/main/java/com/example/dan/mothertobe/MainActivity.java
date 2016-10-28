@@ -23,6 +23,7 @@ import com.example.dan.mothertobe.fragment.MotherManualFragment;
 import com.example.dan.mothertobe.fragment.HotRecommendedFragment;
 import com.example.dan.mothertobe.fragment.HotThisMonthFragment;
 import com.example.dan.mothertobe.fragment.MyFragmentPagerAdapter;
+import com.example.dan.mothertobe.rxbus.TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,7 +154,9 @@ public class MainActivity extends AppCompatActivity
             intent.setClass(MainActivity.this, LinkmanActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent =new Intent();
+            intent.setClass(MainActivity.this, TestActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
