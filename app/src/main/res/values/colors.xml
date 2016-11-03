@@ -16,4 +16,13 @@
     <color name="transparent">#00000000</color>
     <color name="friendsdataitem">#eceaea</color>
     <color name="lightgray">#BABABA</color>
+
+
+
+
+    <color name="blackLight">#212121</color>
+    <color name="grey">#727272</color>
+    <color name="whiteLight">#F0F0F0</color>
+    <color name="tranBlackDark">#66000000</color>
+    <color name="tranBlackLight">#22000000</color>
 </resources>

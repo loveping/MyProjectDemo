@@ -25,6 +25,7 @@ import rx.schedulers.Schedulers;
 public class HttpManager {
     private static final int DEFAULT_TIMEOUT = 20;
     private volatile static HttpManager INSTANCE;
+
     private TestServer testServer;
     private Retrofit retrofit;
     private HttpManager(){

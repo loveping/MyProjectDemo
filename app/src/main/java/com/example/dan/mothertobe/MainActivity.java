@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.dan.mothertobe.activity.LinkmanActivity;
+import com.example.dan.mothertobe.activity.PicassoActivity;
 import com.example.dan.mothertobe.fragment.MotherManualFragment;
 import com.example.dan.mothertobe.fragment.HotRecommendedFragment;
 import com.example.dan.mothertobe.fragment.HotThisMonthFragment;
@@ -158,6 +159,9 @@ public class MainActivity extends AppCompatActivity
             intent.setClass(MainActivity.this, TestActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
+            Intent intent =new Intent();
+            intent.setClass(MainActivity.this, PicassoActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 
