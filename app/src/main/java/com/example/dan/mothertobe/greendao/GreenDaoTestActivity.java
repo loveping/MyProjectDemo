@@ -28,7 +28,7 @@ public class GreenDaoTestActivity extends AppCompatActivity {
 
     }
 
-    //插入数据库的操作
+    //创建数据库的操作
     public void insertData(View view){
         Log.i(TAG,"insert Data");
         Student student = new Student();
@@ -38,9 +38,9 @@ public class GreenDaoTestActivity extends AppCompatActivity {
         student.setId(1001l);
         commonUtils.insertStudent(student);
         if (commonUtils.insertStudent(student)){
-            Toast.makeText(GreenDaoTestActivity.this ,"插入一条数据成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(GreenDaoTestActivity.this ,"创建数据成功",Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(GreenDaoTestActivity.this ,"插入一条数据成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(GreenDaoTestActivity.this ,"创建数据成功",Toast.LENGTH_SHORT).show();
         }
     }
 
