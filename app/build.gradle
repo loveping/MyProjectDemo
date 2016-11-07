@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 24
     buildToolsVersion '24.0.3'
     defaultConfig {
-        applicationId "com.example.dan.mothertobe"
+        applicationId "com.example.dan.MyDemo"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
@@ -23,6 +22,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java-gen']
+        }
     }
 }
 
@@ -52,12 +57,11 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     /* picasso*/
     compile 'com.squareup.picasso:picasso:2.5.2'
+    /** greendao*/
+    compile 'org.greenrobot:greendao:3.1.0'
+    compile 'org.greenrobot:greendao-generator:3.1.0'
 }
-greendao {
-    schemaVersion 1
-    daoPackage 'com.example.dan.mothertobe.dao'
-    targetGenDir 'src/main/java'
-}
+
 
 configurations.all {
     resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
