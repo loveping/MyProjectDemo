@@ -3,8 +3,9 @@ package com.example.dan.mothertobe.dbmanager;
 
 import android.content.Context;
 
-import com.student.dao.DaoMaster;
-import com.student.dao.DaoSession;
+
+import com.example.dan.mothertobe.greendao.DaoMaster;
+import com.example.dan.mothertobe.greendao.DaoSession;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 

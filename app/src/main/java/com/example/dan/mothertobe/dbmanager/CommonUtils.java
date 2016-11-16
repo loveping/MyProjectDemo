@@ -3,8 +3,12 @@ package com.example.dan.mothertobe.dbmanager;
 import android.content.Context;
 import android.util.Log;
 
-import com.student.entity.Student;
+import com.example.dan.mothertobe.greendao.UserEntity;
+import com.example.dan.mothertobe.greendao.UserEntityDao;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +28,12 @@ public class CommonUtils {
 
     /**
      * 完成对数据库中student 表的插入操作
-     * @param student
+     * @param userEntity
      * @return
      */
-    public boolean insertStudent(Student student){
+    public boolean insertStudent(UserEntity userEntity){
         boolean flag = false;
-        flag = manager.getDaoSession().insert(student) != -1? true : false;
+        flag = manager.getDaoSession().insert(userEntity) != -1? true : false;
         Log.i("CommonUtils" , "*********insertStudent***result**is******" + flag);
         return flag;
     }
@@ -39,13 +43,13 @@ public class CommonUtils {
      * @param students
      * @return
      */
-    public boolean insertMultStudent(List<Student> students){
+    public boolean insertMultStudent(List<UserEntity> students){
         boolean flag = false;
         try {
             manager.getDaoSession().runInTx(new Runnable() {
                 @Override
                 public void run() {
-                    for (Student student:students){
+                    for (UserEntity student:students){
                         manager.getDaoSession().insertOrReplace(student);
                     }
                 }
@@ -63,7 +67,7 @@ public class CommonUtils {
      * @param student
      * @return
      */
-    public boolean updataStudent(Student student){
+    public boolean updataStudent(UserEntity student){
         boolean flag = false;
 
         try {
@@ -82,7 +86,7 @@ public class CommonUtils {
      * @param student
      * @return
      */
-    public boolean deletStudent(Student student){
+    public boolean deletStudent(UserEntity student){
         boolean flag = false;
         try {
             //按照指定的ID进行删除 delete from Student where id = ""
@@ -103,7 +107,7 @@ public class CommonUtils {
     public boolean deleteAllStudent(){
         boolean flag =false;
         try {
-            manager.getDaoSession().deleteAll(Student.class);//删除Student表里面所有的数据
+            manager.getDaoSession().deleteAll(UserEntity.class);//删除Student表里面所有的数据
             flag = true;
         }catch (Exception e){
             e.printStackTrace();
@@ -115,8 +119,8 @@ public class CommonUtils {
      * 返回多行记录
      * @return
      */
-    public List<Student> listAll(){
-        return manager.getDaoSession().loadAll(Student.class);
+    public List<UserEntity> listAll(){
+        return manager.getDaoSession().loadAll(UserEntity.class);
     }
 
     /**
@@ -124,8 +128,23 @@ public class CommonUtils {
      * @param key
      * @return
      */
-    public Student listOneStudent(long key){
-        return manager.getDaoSession().load(Student.class,key);
+    public UserEntity listOneStudent(long key){
+        return manager.getDaoSession().load(UserEntity.class,key);
 
+    }
+
+    public void query1(){
+        //使用native sql进行查询操作
+        List<UserEntity> list = manager.getDaoSession().queryRaw(UserEntity.class,"where name like ? and _id >?",new String[]{"%李%","1001l"});
+        Log.i("******-->>","**"+list);
+    }
+
+    /**
+     * select * from UserEntity
+     */
+    public void query2(){
+        //查询构建器
+         QueryBuilder<UserEntity> builder = manager.getDaoSession().queryBuilder(UserEntity.class);
+        builder.where(UserEntityDao.Properties.Age.ge(23)).where(UserEntityDao.Properties.Address.like("北京")).list();
     }
 }

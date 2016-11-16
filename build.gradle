@@ -7,6 +7,9 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+        /*ButterKnife*/
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' //增加这一句
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -16,6 +19,7 @@ allprojects {
     repositories {
         jcenter()
         apply plugin: 'me.tatarka.retrolambda'//我是添加
+
         maven { url "https://jitpack.io" }
     }
 }

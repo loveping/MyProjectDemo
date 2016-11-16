@@ -9,20 +9,24 @@ import android.widget.Toast;
 
 import com.example.dan.mothertobe.R;
 import com.example.dan.mothertobe.dbmanager.CommonUtils;
-import com.student.entity.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class GreenDaoTestActivity extends AppCompatActivity {
 
     private static final String TAG = "GreenDaoTestActivity";
     private Button insert;
     private CommonUtils commonUtils;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_green_dao_test);
+        ButterKnife.bind(this);
         insert = (Button)findViewById(R.id.insert);
         commonUtils = new CommonUtils(this);
 
@@ -31,13 +35,13 @@ public class GreenDaoTestActivity extends AppCompatActivity {
     //创建数据库的操作
     public void insertData(View view){
         Log.i(TAG,"insert Data");
-        Student student = new Student();
-        student.setAddress("深圳");
-        student.setAge(23);
-        student.setName("张三");
-        student.setId(1001l);
-        commonUtils.insertStudent(student);
-        if (commonUtils.insertStudent(student)){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setAddress("深圳");
+        userEntity.setAge(23);
+        userEntity.setName("张三");
+        userEntity.setId(1001l);
+        commonUtils.insertStudent(userEntity);
+        if (commonUtils.insertStudent(userEntity)){
             Toast.makeText(GreenDaoTestActivity.this ,"创建数据成功",Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(GreenDaoTestActivity.this ,"创建数据成功",Toast.LENGTH_SHORT).show();
@@ -47,41 +51,41 @@ public class GreenDaoTestActivity extends AppCompatActivity {
     //批量插入数据
     public void insertMultData(View view){
         Log.i(TAG,"insert mult Data");
-        List<Student> students = new ArrayList<>();
+        List<UserEntity> userEntitys = new ArrayList<>();
         for (int i =0;i<10;i++){
-            Student student = new Student();
-            student.setName("李四" + i);
-            student.setAge(24+i);
-            student.setAddress("广州");
-            students.add(student);
+            UserEntity userEntity = new UserEntity();
+            userEntity.setName("李四" + i);
+            userEntity.setAge(24+i);
+            userEntity.setAddress("广州");
+            userEntitys.add(userEntity);
         }
-        commonUtils.insertMultStudent(students);
-        if (commonUtils.insertMultStudent(students)){
+        commonUtils.insertMultStudent(userEntitys);
+        if (commonUtils.insertMultStudent(userEntitys)){
             Toast.makeText(GreenDaoTestActivity.this ,"插入多条数据成功",Toast.LENGTH_SHORT).show();
         }
     }
 
     //更新一条数据
     public void updataData(View view){
-        //updata student setname = "jack" where id = "1001"
-        Student student = new Student();
-        student.setId(1001l);
-        student.setAge(25);
-        student.setAddress("北京");
-        student.setName("jack");
-        commonUtils.updataStudent(student);
-        if (commonUtils.updataStudent(student)){
+        //updata userEntity setname = "jack" where id = "1001"
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(1001l);
+        userEntity.setAge(25);
+        userEntity.setAddress("北京");
+        userEntity.setName("jack");
+        commonUtils.updataStudent(userEntity);
+        if (commonUtils.updataStudent(userEntity)){
             Toast.makeText(GreenDaoTestActivity.this ,"更新单条数据成功",Toast.LENGTH_SHORT).show();
         }
     }
 
     //删除一条数据
     public  void deleteData(View view){
-        Student student = new Student();
-        student.setId(1001l);
-        //delete from Student where id=1001
-        commonUtils.deletStudent(student);
-        if (commonUtils.deletStudent(student)){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(1001l);
+        //delete from userEntity where id=1001
+        commonUtils.deletStudent(userEntity);
+        if (commonUtils.deletStudent(userEntity)){
             Toast.makeText(GreenDaoTestActivity.this ,"删除单条数据成功",Toast.LENGTH_SHORT).show();
         }
 
@@ -96,11 +100,11 @@ public class GreenDaoTestActivity extends AppCompatActivity {
     }
     //查询一条数据
     public void queryOne(View view){
-        Student student = commonUtils.listOneStudent(1001l);
-        if (student != null){
-            student.getAddress();
-            Toast.makeText(GreenDaoTestActivity.this ,student.toString(),Toast.LENGTH_SHORT).show();
-            Log.i(TAG,student.toString());
+        UserEntity userEntity = commonUtils.listOneStudent(1001l);
+        if (userEntity != null){
+            userEntity.getAddress();
+            Toast.makeText(GreenDaoTestActivity.this ,userEntity.toString(),Toast.LENGTH_SHORT).show();
+            Log.i(TAG,userEntity.toString());
         }else {
             Toast.makeText(GreenDaoTestActivity.this ,"查询数据为空",Toast.LENGTH_SHORT).show();
         }
@@ -109,13 +113,18 @@ public class GreenDaoTestActivity extends AppCompatActivity {
 
     //查询多条数据
     public void queryAll(View view){
-        List<Student> students = commonUtils.listAll();
-        if (students.size() != 0){
-            Toast.makeText(GreenDaoTestActivity.this ,students.toString(),Toast.LENGTH_SHORT).show();
-            Log.i(TAG,students.toString());
+        List<UserEntity> userEntitys = commonUtils.listAll();
+        if (userEntitys.size() != 0){
+            Toast.makeText(GreenDaoTestActivity.this ,userEntitys.toString(),Toast.LENGTH_SHORT).show();
+            Log.i(TAG,userEntitys.toString());
         }else {
             Toast.makeText(GreenDaoTestActivity.this ,"查询数据为空",Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    //使用复合条件进行查询
+    public void queryBuilder(View view){
 
     }
 
